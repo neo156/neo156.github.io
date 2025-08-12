@@ -1,0 +1,31 @@
+/*
+Theme Name: Final
+Theme URI: https://github.com/neo156
+Description: A modern portfolio theme with dynamic content and customization options
+Author: Niño Espe
+Author URI: https://github.com/neo156
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: final
+*/
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+/* Your existing CSS code starts here */
+:root {
+    --primary: #00DC82;          /* Modern mint green */
+    --primary-dark: #00B371;     /* Darker mint for hover */
+    --secondary: #00FFB2;        /* Lighter mint */
+    --dark: #0f172a;             /* Deep navy */
+    --light: #f1f5f9;            /* Light gray-blue */
+    --white: #FFFFFF;
+    --gray: #64748b;             /* Slate gray */
+    --accent: #00FFB2;           /* Bright mint for accents */
+    --gradient: linear-gradient(135deg, #00DC82, #00FFB2);
+    --gradient-hover: linear-gradient(135deg, #00B371, #00DC82);
+}
+
+/* Copy all your existing CSS here */
+/* ... rest of your CSS code ... */ 
