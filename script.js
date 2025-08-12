@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsContainer = document.querySelector('.carousel-dots');
 
     let currentIndex = 0;
-    const slideHeight = slides[0].offsetHeight + 30; // Include gap
+    const getSlideHeight = () => slides[0].offsetHeight + 30; // Include gap
     let isAnimating = false;
 
     // Clone first slide twice - one for top and one for bottom
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     track.insertBefore(lastSlideClone, track.firstChild);
 
     // Adjust initial position to show first real slide
-    track.style.transform = `translateY(-${slideHeight}px)`;
+    track.style.transform = `translateY(-${getSlideHeight()}px)`;
 
     // Create dots
     slides.forEach((_, index) => {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isAnimating = true;
         currentIndex = index;
         // Account for the extra clone at the bottom
-        const offset = currentIndex === 0 ? -slideHeight : -(currentIndex + 1) * slideHeight;
+        const offset = currentIndex === 0 ? -getSlideHeight() : -(currentIndex + 1) * getSlideHeight();
         track.style.transition = smooth ? 'transform 0.8s ease-in-out' : 'none';
         track.style.transform = `translateY(${offset}px)`;
         updateDots();
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 track.style.transition = 'none';
                 // Move to the bottom clone of first slide
-                const offset = -(slides.length + 1) * slideHeight;
+                const offset = -(slides.length + 1) * getSlideHeight();
                 track.style.transform = `translateY(${offset}px)`;
                 setTimeout(() => {
                     track.style.transition = 'transform 0.8s ease-in-out';
@@ -89,16 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentIndex === -1) {
             track.style.transition = 'none';
             currentIndex = slides.length - 1;
-            const offset = -(currentIndex + 1) * slideHeight;
+            const offset = -(currentIndex + 1) * getSlideHeight();
             track.style.transform = `translateY(${offset}px)`;
             setTimeout(() => {
                 track.style.transition = 'transform 0.8s ease-in-out';
             }, 50);
         }
         // If we're at the bottom clone, jump to the real first slide
-        else if (currentIndex === 0 && track.style.transform.includes(`${-(slides.length + 1) * slideHeight}`)) {
+        else if (currentIndex === 0 && track.style.transform.includes(`${-(slides.length + 1) * getSlideHeight()}`)) {
             track.style.transition = 'none';
-            const offset = -slideHeight;
+            const offset = -getSlideHeight();
             track.style.transform = `translateY(${offset}px)`;
             setTimeout(() => {
                 track.style.transition = 'transform 0.8s ease-in-out';
@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle resize
     window.addEventListener('resize', () => {
-        const newSlideHeight = slides[0].offsetHeight + 30;
         goToSlide(currentIndex, false);
     });
 
